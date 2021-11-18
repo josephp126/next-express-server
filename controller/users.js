@@ -53,13 +53,13 @@ const login = (datas, callback) => {
                 email: user.email,
               }
               user.token = "Bearer " + genToken(newUser);
-              res.json(user);
+              callback(null, user);
             } else {
-              res.json({err: "invalid user"});
+              callback("invalid user", null);
             }
           })
         } else{
-          res.json({err: "invalid user"});
+          callback("invalid user", null);
         }
       }
     })
