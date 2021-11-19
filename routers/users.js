@@ -24,4 +24,25 @@ router.post('/login', async (req, res) => {
     });
 });
 
+router.post('/uploadfile', (req, res) => {
+    userController.uploadFile(req, function(err, result) {
+        if(err) {
+            res.send("error");
+        } else {
+            res.send("success");
+        }
+    })
+});
+
+router.get('/getinvoices', (req, res) => {
+    let datas = req.body;
+    userController.getInvoices(datas, function(err, result) {
+        if(err) {
+            res.send("error");
+        } else {
+            res.json(result);
+        }
+    })
+})
+
 module.exports = router;
